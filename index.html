@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpermBuy — Premium Donor Selection Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #6C5CE7;
+  --primary-light: #A29BFE;
+  --accent: #FD79A8;
+  --accent-dark: #E84393;
+  --bg: #0A0A1A;
+  --bg-card: #12122A;
+  --bg-card-hover: #1A1A3A;
+  --text: #E8E8F0;
+  --text-muted: #8888AA;
+  --gradient: linear-gradient(135deg, #6C5CE7, #E84393);
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  backdrop-filter: blur(24px);
+  background: rgba(10,10,26,0.8);
+  border-bottom: 1px solid var(--glass-border);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 24px;
+}
+.logo {
+  font-size: 24px; font-weight: 800;
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  background: var(--gradient); color: #fff; border: none; padding: 10px 24px;
+  border-radius: 100px; font-weight: 600; font-size: 14px; cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(108,92,231,0.4); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 120px 24px 80px;
+  position: relative;
+  background: radial-gradient(ellipse at 50% 0%, rgba(108,92,231,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 50%, rgba(232,67,147,0.08) 0%, transparent 50%);
+}
+.hero-content { max-width: 800px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--glass); border: 1px solid var(--glass-border);
+  padding: 8px 20px; border-radius: 100px; font-size: 13px; color: var(--primary-light);
+  margin-bottom: 32px;
+}
+.badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #00D2A0; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+.hero h1 {
+  font-size: clamp(40px, 7vw, 72px); font-weight: 900; line-height: 1.05;
+  margin-bottom: 24px;
+}
+.hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size: 18px; color: var(--text-muted); max-width: 560px; margin: 0 auto 40px; }
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--gradient); color: #fff; border: none;
+  padding: 16px 40px; border-radius: 100px; font-size: 16px; font-weight: 700;
+  cursor: pointer; transition: transform .2s, box-shadow .2s; text-decoration: none;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(108,92,231,0.5); }
+.btn-secondary {
+  background: var(--glass); border: 1px solid var(--glass-border); color: var(--text);
+  padding: 16px 40px; border-radius: 100px; font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: all .2s; text-decoration: none;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.08); }
+
+/* ── STATS ── */
+.stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  max-width: 1000px; margin: -40px auto 0; padding: 0 24px;
+  position: relative; z-index: 2;
+}
+.stat {
+  background: var(--bg-card); border: 1px solid var(--glass-border);
+  border-radius: 20px; padding: 32px; text-align: center;
+}
+.stat-num { font-size: 36px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ── SECTIONS ── */
+section { padding: 120px 24px; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-label {
+  font-size: 13px; text-transform: uppercase; letter-spacing: 3px;
+  color: var(--primary-light); font-weight: 600; margin-bottom: 12px;
+}
+.section-title { font-size: 42px; font-weight: 800; margin-bottom: 20px; }
+.section-subtitle { font-size: 18px; color: var(--text-muted); max-width: 600px; margin-bottom: 60px; }
+
+/* ── HOW IT WORKS ── */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.step {
+  background: var(--bg-card); border: 1px solid var(--glass-border);
+  border-radius: 24px; padding: 40px; position: relative; overflow: hidden;
+  transition: transform .3s, border-color .3s;
+}
+.step:hover { transform: translateY(-4px); border-color: rgba(108,92,231,0.3); }
+.step-num {
+  font-size: 64px; font-weight: 900; position: absolute; top: -10px; right: 16px;
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  opacity: .15;
+}
+.step-icon { font-size: 40px; margin-bottom: 20px; }
+.step h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+.step p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+
+/* ── DONOR PROFILES ── */
+.donors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.donor-card {
+  background: var(--bg-card); border: 1px solid var(--glass-border);
+  border-radius: 24px; overflow: hidden; transition: transform .3s, box-shadow .3s;
+}
+.donor-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+.donor-photo {
+  height: 260px; background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 72px; position: relative;
+}
+.donor-verified {
+  position: absolute; top: 16px; right: 16px;
+  background: rgba(0,210,160,0.2); color: #00D2A0;
+  padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600;
+}
+.donor-info { padding: 28px; }
+.donor-id { font-size: 12px; color: var(--primary-light); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.donor-traits { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.trait {
+  background: var(--glass); border: 1px solid var(--glass-border);
+  padding: 6px 14px; border-radius: 100px; font-size: 12px; color: var(--text-muted);
+}
+.donor-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+.donor-stat { text-align: center; }
+.donor-stat-val { font-size: 16px; font-weight: 700; }
+.donor-stat-lbl { font-size: 11px; color: var(--text-muted); }
+.donor-price {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--glass-border);
+}
+.price { font-size: 24px; font-weight: 800; }
+.price span { font-size: 14px; font-weight: 400; color: var(--text-muted); }
+.btn-select {
+  background: var(--gradient); color: #fff; border: none;
+  padding: 10px 24px; border-radius: 100px; font-weight: 600; font-size: 13px;
+  cursor: pointer; transition: transform .2s;
+}
+.btn-select:hover { transform: scale(1.05); }
+
+/* ── FEATURES ── */
+.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.feature {
+  background: var(--bg-card); border: 1px solid var(--glass-border);
+  border-radius: 20px; padding: 36px; display: flex; gap: 20px;
+  transition: border-color .3s;
+}
+.feature:hover { border-color: rgba(108,92,231,0.3); }
+.feature-icon { font-size: 32px; flex-shrink: 0; }
+.feature h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.feature p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+/* ── LEGAL ── */
+.legal-section { background: var(--bg-card); border-radius: 32px; padding: 60px; margin: 0 auto; max-width: 1000px; }
+.legal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+.legal-item { display: flex; gap: 16px; }
+.legal-icon { font-size: 28px; flex-shrink: 0; }
+.legal-item h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.legal-item p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+/* ── PRICING ── */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.pricing-card {
+  background: var(--bg-card); border: 1px solid var(--glass-border);
+  border-radius: 24px; padding: 40px; text-align: center;
+  transition: transform .3s;
+}
+.pricing-card.featured { border-color: var(--primary); position: relative; }
+.pricing-card.featured::before {
+  content: 'Most Popular'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--gradient); padding: 6px 20px; border-radius: 100px;
+  font-size: 12px; font-weight: 700; color: #fff;
+}
+.pricing-card:hover { transform: translateY(-4px); }
+.pricing-tier { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-light); font-weight: 600; }
+.pricing-price { font-size: 48px; font-weight: 900; margin: 16px 0 8px; }
+.pricing-price span { font-size: 16px; color: var(--text-muted); font-weight: 400; }
+.pricing-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+.pricing-features { list-style: none; text-align: left; margin-bottom: 32px; }
+.pricing-features li { padding: 10px 0; border-bottom: 1px solid var(--glass-border); font-size: 14px; color: var(--text-muted); }
+.pricing-features li::before { content: '✓ '; color: #00D2A0; font-weight: 700; }
+
+/* ── TESTIMONIALS ── */
+.testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.testimonial {
+  background: var(--bg-card); border: 1px solid var(--glass-border);
+  border-radius: 20px; padding: 32px;
+}
+.testimonial-stars { color: #FFD700; font-size: 16px; margin-bottom: 16px; }
+.testimonial p { font-size: 15px; color: var(--text-muted); line-height: 1.7; font-style: italic; margin-bottom: 20px; }
+.testimonial-author { font-size: 14px; font-weight: 600; }
+.testimonial-loc { font-size: 12px; color: var(--text-muted); }
+
+/* ── FAQ ── */
+.faq-list { max-width: 760px; }
+.faq-item { border-bottom: 1px solid var(--glass-border); }
+.faq-q {
+  padding: 24px 0; font-size: 17px; font-weight: 600; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.faq-q::after { content: '+'; font-size: 24px; color: var(--primary-light); transition: transform .3s; }
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height .3s; }
+.faq-a-inner { padding: 0 0 24px; font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+.faq-item.open .faq-a { max-height: 300px; }
+
+/* ── CTA ── */
+.cta-section {
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 50%, rgba(108,92,231,0.15) 0%, transparent 70%);
+}
+.cta-section h2 { font-size: 48px; font-weight: 900; margin-bottom: 20px; }
+.cta-section h2 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.cta-section p { font-size: 18px; color: var(--text-muted); max-width: 500px; margin: 0 auto 40px; }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--glass-border);
+  padding: 60px 24px 40px; text-align: center;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-links { display: flex; gap: 32px; justify-content: center; margin: 24px 0; }
+.footer-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
+.footer-links a:hover { color: var(--text); }
+.footer-copy { font-size: 13px; color: var(--text-muted); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .steps, .donors-grid, .pricing-grid, .testimonials { grid-template-columns: 1fr; }
+  .features-grid, .legal-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 36px; }
+  .section-title { font-size: 32px; }
+  .legal-section { padding: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">SpermBuy</div>
+    <ul class="nav-links">
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#donors">Donors</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#legal">Legal</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <button class="nav-cta" onclick="location.href='#cta'">Get Started</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="badge"><span class="badge-dot"></span> Trusted by 10,000+ families worldwide</div>
+    <h1>Choose the <span>Perfect Donor</span> for Your Future Family</h1>
+    <p>The first platform where women take full control of their reproductive choices. Browse verified donor profiles, review genetics, and complete legally binding transactions — all in one place.</p>
+    <div class="hero-buttons">
+      <a href="#donors" class="btn-primary">Browse Donors</a>
+      <a href="#how" class="btn-secondary">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">5,000+</div><div class="stat-label">Verified Donors</div></div>
+  <div class="stat"><div class="stat-num">98.7%</div><div class="stat-label">Satisfaction Rate</div></div>
+  <div class="stat"><div class="stat-num">12,000+</div><div class="stat-label">Happy Families</div></div>
+  <div class="stat"><div class="stat-num">50</div><div class="stat-label">States Covered</div></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <div class="section-title">Simple. Transparent. Legal.</div>
+    <div class="section-subtitle">Three easy steps to finding your ideal donor and completing a fully legal transaction.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon">🔍</div>
+        <h3>Browse & Filter</h3>
+        <p>Search through thousands of verified donor profiles. Filter by education, ethnicity, height, health history, interests, and more. Every profile includes comprehensive genetic screening results.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon">📋</div>
+        <h3>Review & Select</h3>
+        <p>View detailed profiles including childhood photos, voice recordings, personality assessments, and family medical history. Compare donors side-by-side to find your perfect match.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon">✅</div>
+        <h3>Legal Purchase</h3>
+        <p>Complete the transaction through our secure legal framework. All contracts are reviewed by reproductive law attorneys. Samples are shipped from FDA-registered facilities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONOR PROFILES -->
+<section id="donors" style="background: rgba(255,255,255,0.01);">
+  <div class="section-inner">
+    <div class="section-label">Featured Donors</div>
+    <div class="section-title">Exceptional Profiles</div>
+    <div class="section-subtitle">Every donor undergoes rigorous health screening, genetic testing, and background verification.</div>
+    <div class="donors-grid">
+
+      <div class="donor-card">
+        <div class="donor-photo" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+          👨‍⚕️
+          <div class="donor-verified">✓ Verified</div>
+        </div>
+        <div class="donor-info">
+          <div class="donor-id">Donor #4827</div>
+          <div class="donor-traits">
+            <span class="trait">MD, Cardiology</span>
+            <span class="trait">6'2"</span>
+            <span class="trait">Blue Eyes</span>
+            <span class="trait">Athletic</span>
+          </div>
+          <div class="donor-stats">
+            <div class="donor-stat"><div class="donor-stat-val">32</div><div class="donor-stat-lbl">Age</div></div>
+            <div class="donor-stat"><div class="donor-stat-val">A+</div><div class="donor-stat-lbl">Blood</div></div>
+            <div class="donor-stat"><div class="donor-stat-val">148</div><div class="donor-stat-lbl">IQ</div></div>
+          </div>
+          <div class="donor-price">
+            <div class="price">$1,200 <span>/ vial</span></div>
+            <button class="btn-select">Select</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="donor-card">
+        <div class="donor-photo" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+          👨‍💻
+          <div class="donor-verified">✓ Verified</div>
+        </div>
+        <div class="donor-info">
+          <div class="donor-id">Donor #3156</div>
+          <div class="donor-traits">
+            <span class="trait">Software Engineer</span>
+            <span class="trait">5'11"</span>
+            <span class="trait">Brown Eyes</span>
+            <span class="trait">Lean</span>
+          </div>
+          <div class="donor-stats">
+            <div class="donor-stat"><div class="donor-stat-val">28</div><div class="donor-stat-lbl">Age</div></div>
+            <div class="donor-stat"><div class="donor-stat-val">O+</div><div class="donor-stat-lbl">Blood</div></div>
+            <div class="donor-stat"><div class="donor-stat-val">152</div><div class="donor-stat-lbl">IQ</div></div>
+          </div>
+          <div class="donor-price">
+            <div class="price">$950 <span>/ vial</span></div>
+            <button class="btn-select">Select</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="donor-card">
+        <div class="donor-photo" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+          👨‍🎓
+          <div class="donor-verified">✓ Verified</div>
+        </div>
+        <div class="donor-info">
+          <div class="donor-id">Donor #7293</div>
+          <div class="donor-traits">
+            <span class="trait">PhD, Physics</span>
+            <span class="trait">6'0"</span>
+            <span class="trait">Green Eyes</span>
+            <span class="trait">Muscular</span>
+          </div>
+          <div class="donor-stats">
+            <div class="donor-stat"><div class="donor-stat-val">35</div><div class="donor-stat-lbl">Age</div></div>
+            <div class="donor-stat"><div class="donor-stat-val">B+</div><div class="donor-stat-lbl">Blood</div></div>
+            <div class="donor-stat"><div class="donor-stat-val">156</div><div class="donor-stat-lbl">IQ</div></div>
+          </div>
+          <div class="donor-price">
+            <div class="price">$1,500 <span>/ vial</span></div>
+            <button class="btn-select">Select</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-label">Platform Features</div>
+    <div class="section-title">Everything You Need</div>
+    <div class="section-subtitle">Built from the ground up for transparency, safety, and empowerment.</div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">🧬</div>
+        <div><h3>Genetic Screening</h3><p>Every donor undergoes 300+ genetic marker analysis, carrier screening, and chromosomal testing by CLIA-certified labs.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔒</div>
+        <div><h3>Privacy Protected</h3><p>Choose anonymous or open-ID donors. All personal data is encrypted end-to-end. HIPAA compliant infrastructure.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⚖️</div>
+        <div><h3>Legal Framework</h3><p>Every transaction includes attorney-reviewed contracts that protect both buyer and donor. Compliant with all 50 state laws.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🏥</div>
+        <div><h3>FDA-Registered Facilities</h3><p>All samples processed and stored at FDA-registered tissue banks with proper quarantine protocols.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🚚</div>
+        <div><h3>Secure Shipping</h3><p>Cryogenic shipping nationwide in specialized nitrogen vapor tanks. Track your shipment in real-time.</p></div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💬</div>
+        <div><h3>Concierge Support</h3><p>Dedicated fertility coordinators guide you through every step. Chat, call, or video consult anytime.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL -->
+<section id="legal" style="background: rgba(255,255,255,0.01);">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom: 48px;">
+      <div class="section-label">Legal & Compliance</div>
+      <div class="section-title">100% Legal & Regulated</div>
+    </div>
+    <div class="legal-section">
+      <div class="legal-grid">
+        <div class="legal-item">
+          <div class="legal-icon">📜</div>
+          <div><h3>Binding Contracts</h3><p>All transactions protected by legally binding agreements reviewed by specialized reproductive law attorneys in your state.</p></div>
+        </div>
+        <div class="legal-item">
+          <div class="legal-icon">🏛️</div>
+          <div><h3>State Compliance</h3><p>We maintain compliance with reproductive tissue laws across all 50 states, including UPA 2017 donor protections.</p></div>
+        </div>
+        <div class="legal-item">
+          <div class="legal-icon">🛡️</div>
+          <div><h3>Donor Rights</h3><p>Clear contractual termination of parental rights for donors. Full legal separation between donor and recipient families.</p></div>
+        </div>
+        <div class="legal-item">
+          <div class="legal-icon">✅</div>
+          <div><h3>FDA Regulated</h3><p>Compliant with 21 CFR Part 1271 for human cells, tissues, and cellular/tissue-based products (HCT/Ps).</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <div class="section-label">Pricing</div>
+      <div class="section-title">Transparent Pricing</div>
+      <div class="section-subtitle" style="margin: 16px auto 0;">No hidden fees. Everything included.</div>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Standard</div>
+        <div class="pricing-price">$800 <span>/ vial</span></div>
+        <div class="pricing-desc">Anonymous donor selection</div>
+        <ul class="pricing-features">
+          <li>Basic donor profile</li>
+          <li>Genetic screening report</li>
+          <li>Medical history</li>
+          <li>Standard shipping</li>
+          <li>Legal contract included</li>
+        </ul>
+        <button class="btn-primary" style="width:100%">Choose Plan</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-tier">Premium</div>
+        <div class="pricing-price">$1,200 <span>/ vial</span></div>
+        <div class="pricing-desc">Extended profiles & open-ID option</div>
+        <ul class="pricing-features">
+          <li>Full donor profile + photos</li>
+          <li>Extended genetic panel (300+)</li>
+          <li>Personality assessment</li>
+          <li>Audio interview included</li>
+          <li>Priority shipping</li>
+          <li>Dedicated coordinator</li>
+        </ul>
+        <button class="btn-primary" style="width:100%">Choose Plan</button>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Elite</div>
+        <div class="pricing-price">$2,500 <span>/ vial</span></div>
+        <div class="pricing-desc">Exclusive donors, full concierge</div>
+        <ul class="pricing-features">
+          <li>Top-tier exclusive donors</li>
+          <li>Full genome sequencing</li>
+          <li>Video interview access</li>
+          <li>1-on-1 genetic counseling</li>
+          <li>Express cryogenic shipping</li>
+          <li>Lifetime storage option</li>
+          <li>VIP concierge service</li>
+        </ul>
+        <button class="btn-primary" style="width:100%">Choose Plan</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background: rgba(255,255,255,0.01);">
+  <div class="section-inner">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <div class="section-label">Testimonials</div>
+      <div class="section-title">Real Stories, Real Families</div>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"SpermBuy made the entire process feel empowering rather than clinical. I found my perfect donor in a week, and the legal process was completely seamless."</p>
+        <div class="testimonial-author">Sarah M.</div>
+        <div class="testimonial-loc">Los Angeles, CA</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"As a same-sex couple, we needed a platform that understood us. The profiles are incredibly detailed, and our coordinator was amazing throughout."</p>
+        <div class="testimonial-author">Jessica & Emma T.</div>
+        <div class="testimonial-loc">Austin, TX</div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"The genetic screening alone is worth it. Knowing my donor was fully tested for 300+ conditions gave me peace of mind I couldn't find anywhere else."</p>
+        <div class="testimonial-author">Rachel K.</div>
+        <div class="testimonial-loc">New York, NY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="section-label">FAQ</div>
+    <div class="section-title">Common Questions</div>
+    <div class="section-subtitle">Everything you need to know before getting started.</div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Is buying sperm legal?</div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. Purchasing donor sperm is fully legal in all 50 U.S. states and most countries worldwide. SpermBuy operates through FDA-registered tissue banks with full regulatory compliance. All transactions include legally binding contracts reviewed by reproductive law attorneys.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How are donors screened?</div>
+        <div class="faq-a"><div class="faq-a-inner">Every donor undergoes a comprehensive screening process: physical examination, infectious disease testing (FDA-mandated), genetic carrier screening for 300+ conditions, psychological evaluation, family medical history review (3+ generations), and criminal background check.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can the donor claim parental rights?</div>
+        <div class="faq-a"><div class="faq-a-inner">No. All legal contracts explicitly terminate any parental rights of the donor. Under the Uniform Parentage Act and state-specific laws, sperm donors who donate through licensed facilities have no legal claim to parental rights.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How is the sperm shipped?</div>
+        <div class="faq-a"><div class="faq-a-inner">Samples are shipped in specialized cryogenic tanks using liquid nitrogen vapor, maintaining temperatures below -150°C. Tanks are designed for 7-10 day holding time. We ship nationwide with full tracking and insurance.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's the difference between anonymous and open-ID?</div>
+        <div class="faq-a"><div class="faq-a-inner">Anonymous donors remain unidentifiable. Open-ID donors agree that their identity can be released to donor-conceived children once they turn 18. Both options include full medical and genetic profiles.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <h2>Start Your <span>Journey</span> Today</h2>
+  <p>Join thousands of women who've taken control of their reproductive future with SpermBuy.</p>
+  <a href="#" class="btn-primary">Create Free Account</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="logo" style="font-size: 28px; margin-bottom: 8px;">SpermBuy</div>
+    <p style="color: var(--text-muted); font-size: 14px;">The premium donor selection platform.</p>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Contact</a>
+      <a href="#">Blog</a>
+    </div>
+    <div class="footer-copy">© 2026 SpermBuy.com — All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+</script>
+</body>
+</html>
