@@ -10,20 +10,26 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --accent: #0071E3;
-  --accent-hover: #0077ED;
-  --text-primary: #1D1D1F;
-  --text-secondary: #6E6E73;
-  --text-tertiary: #86868B;
-  --bg: #F5F5F7;
-  --glass-bg: rgba(255,255,255,0.55);
-  --glass-bg-heavy: rgba(255,255,255,0.72);
-  --glass-border: rgba(255,255,255,0.45);
-  --glass-border-subtle: rgba(0,0,0,0.06);
-  --glass-shadow: 0 2px 20px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.04);
-  --glass-shadow-lg: 0 8px 40px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.04);
+  --accent: #6C5CE7;
+  --accent-pink: #E84393;
+  --accent-hover: #7D6FF0;
+  --accent-soft: #A29BFE;
+  --accent-warm: #FD79A8;
+  --text-primary: #E8E8F0;
+  --text-secondary: #ADADC0;
+  --text-tertiary: #8888AA;
+  --bg: #0A0A1A;
+  --card-bg: #12122A;
+  --card-bg-alt: #1A1A3A;
+  --glass-bg: rgba(18,18,42,0.6);
+  --glass-bg-heavy: rgba(26,26,58,0.75);
+  --glass-border: rgba(255,255,255,0.06);
+  --glass-border-hover: rgba(255,255,255,0.1);
+  --glass-shadow: 0 2px 20px rgba(0,0,0,0.3), 0 0 0 0.5px rgba(255,255,255,0.04);
+  --glass-shadow-lg: 0 8px 40px rgba(0,0,0,0.4), 0 0 0 0.5px rgba(255,255,255,0.06);
+  --gradient: linear-gradient(135deg, #6C5CE7, #E84393);
   --radius-outer: 28px;
-  --radius-inner: 20px; /* outer - padding(8) */
+  --radius-inner: 20px;
   --radius-innermost: 14px;
 }
 
@@ -38,19 +44,25 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Ambient background blobs */
 body::before, body::after {
   content: ''; position: fixed; border-radius: 50%; pointer-events: none; z-index: -1;
-  filter: blur(120px); opacity: 0.4;
+  filter: blur(120px); opacity: 0.35;
 }
 body::before {
   width: 600px; height: 600px; top: -100px; right: -100px;
-  background: radial-gradient(circle, rgba(0,113,227,0.2), transparent 70%);
+  background: radial-gradient(circle, rgba(108,92,231,0.3), transparent 70%);
 }
 body::after {
   width: 500px; height: 500px; bottom: 10%; left: -100px;
-  background: radial-gradient(circle, rgba(175,82,222,0.15), transparent 70%);
+  background: radial-gradient(circle, rgba(232,67,147,0.2), transparent 70%);
 }
+
+/* ── ICON UTILITY ── */
+.icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.icon svg { width: 100%; height: 100%; }
 
 /* ── GLASS UTILITY ── */
 .glass {
@@ -72,11 +84,11 @@ body::after {
 nav {
   position: fixed; top: 12px; left: 50%; transform: translateX(-50%);
   z-index: 100; border-radius: 9999px; padding: 10px 8px;
-  background: rgba(255,255,255,0.6);
+  background: rgba(18,18,42,0.7);
   backdrop-filter: blur(40px) saturate(1.8);
   -webkit-backdrop-filter: blur(40px) saturate(1.8);
-  border: 0.5px solid rgba(255,255,255,0.5);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  border: 0.5px solid rgba(255,255,255,0.08);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.4);
   max-width: 720px; width: calc(100% - 32px);
 }
 .nav-inner {
@@ -93,13 +105,13 @@ nav {
   font-weight: 500; padding: 6px 14px; border-radius: 9999px;
   transition: all .2s;
 }
-.nav-links a:hover { color: var(--text-primary); background: rgba(0,0,0,0.04); }
+.nav-links a:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
 .nav-cta {
-  background: var(--accent); color: #fff; border: none; padding: 8px 20px;
+  background: var(--gradient); color: #fff; border: none; padding: 8px 20px;
   border-radius: 9999px; font-weight: 600; font-size: 13px; cursor: pointer;
   transition: all .2s; font-family: inherit;
 }
-.nav-cta:hover { background: var(--accent-hover); transform: scale(1.03); }
+.nav-cta:hover { transform: scale(1.03); box-shadow: 0 4px 20px rgba(108,92,231,0.4); }
 
 /* ── HERO ── */
 .hero {
@@ -110,12 +122,12 @@ nav {
 .hero-content { max-width: 720px; }
 .badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.6);
+  background: rgba(18,18,42,0.6);
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border: 0.5px solid rgba(255,255,255,0.5);
+  border: 0.5px solid rgba(255,255,255,0.08);
   padding: 8px 20px; border-radius: 9999px; font-size: 13px;
   color: var(--text-secondary); font-weight: 500;
-  margin-bottom: 28px; box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  margin-bottom: 28px; box-shadow: 0 1px 8px rgba(0,0,0,0.3);
 }
 .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #30D158; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
@@ -123,22 +135,25 @@ nav {
   font-size: clamp(38px, 6vw, 64px); font-weight: 800; line-height: 1.08;
   margin-bottom: 20px; letter-spacing: -1.5px; color: var(--text-primary);
 }
-.hero h1 span { color: var(--accent); }
+.hero h1 span {
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 .hero p { font-size: 17px; color: var(--text-secondary); max-width: 520px; margin: 0 auto 36px; line-height: 1.6; }
 .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .btn-primary {
-  background: var(--accent); color: #fff; border: none;
+  background: var(--gradient); color: #fff; border: none;
   padding: 14px 36px; border-radius: 9999px; font-size: 15px; font-weight: 600;
   cursor: pointer; transition: all .2s; text-decoration: none; font-family: inherit;
 }
-.btn-primary:hover { background: var(--accent-hover); transform: scale(1.03); box-shadow: 0 4px 20px rgba(0,113,227,0.3); }
+.btn-primary:hover { transform: scale(1.03); box-shadow: 0 4px 20px rgba(108,92,231,0.4); }
 .btn-secondary {
-  background: rgba(255,255,255,0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border: 0.5px solid rgba(0,0,0,0.08); color: var(--text-primary);
+  background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 0.5px solid rgba(255,255,255,0.1); color: var(--text-primary);
   padding: 14px 36px; border-radius: 9999px; font-size: 15px; font-weight: 600;
   cursor: pointer; transition: all .2s; text-decoration: none; font-family: inherit;
 }
-.btn-secondary:hover { background: rgba(255,255,255,0.7); }
+.btn-secondary:hover { background: rgba(255,255,255,0.1); }
 
 /* ── STATS ── */
 .stats {
@@ -162,7 +177,8 @@ section { padding: 100px 24px; }
 .section-inner { max-width: 1100px; margin: 0 auto; }
 .section-label {
   font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
-  color: var(--accent); font-weight: 700; margin-bottom: 8px;
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; font-weight: 700; margin-bottom: 8px;
 }
 .section-title { font-size: 38px; font-weight: 800; margin-bottom: 14px; letter-spacing: -0.8px; color: var(--text-primary); }
 .section-subtitle { font-size: 17px; color: var(--text-secondary); max-width: 520px; margin-bottom: 48px; line-height: 1.6; }
@@ -177,12 +193,18 @@ section { padding: 100px 24px; }
   border-radius: var(--radius-outer); padding: 36px; position: relative; overflow: hidden;
   transition: all .3s ease; box-shadow: var(--glass-shadow);
 }
-.step:hover { transform: translateY(-3px); box-shadow: var(--glass-shadow-lg); }
+.step:hover { transform: translateY(-3px); box-shadow: var(--glass-shadow-lg); border-color: var(--glass-border-hover); }
 .step-num {
   font-size: 56px; font-weight: 900; position: absolute; top: -8px; right: 16px;
-  color: rgba(0,113,227,0.07);
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; opacity: 0.15;
 }
-.step-icon { font-size: 36px; margin-bottom: 16px; }
+.step-icon {
+  width: 48px; height: 48px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(108,92,231,0.15), rgba(232,67,147,0.15));
+  border-radius: 14px; color: var(--accent-soft);
+}
+.step-icon svg { width: 24px; height: 24px; stroke: var(--accent-soft); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text-primary); }
 .step p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
 
@@ -196,40 +218,52 @@ section { padding: 100px 24px; }
   border-radius: var(--radius-outer); overflow: hidden;
   transition: all .3s ease; box-shadow: var(--glass-shadow);
 }
-.donor-card:hover { transform: translateY(-4px); box-shadow: var(--glass-shadow-lg); }
+.donor-card:hover { transform: translateY(-4px); box-shadow: var(--glass-shadow-lg); border-color: var(--glass-border-hover); }
 .donor-photo {
   height: 220px; display: flex; align-items: center; justify-content: center;
-  font-size: 64px; position: relative;
+  position: relative;
 }
+.donor-silhouette {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  display: flex; align-items: center; justify-content: center;
+}
+.donor-silhouette svg { width: 40px; height: 40px; fill: rgba(255,255,255,0.3); }
 .donor-verified {
   position: absolute; top: 14px; right: 14px;
-  background: rgba(255,255,255,0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  background: rgba(18,18,42,0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   color: #30D158; padding: 4px 12px; border-radius: 9999px; font-size: 11px; font-weight: 700;
-  border: 0.5px solid rgba(255,255,255,0.5);
+  border: 0.5px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; gap: 4px;
 }
+.donor-verified svg { width: 12px; height: 12px; stroke: #30D158; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 .donor-info { padding: 24px; }
-.donor-id { font-size: 11px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+.donor-id {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 .donor-traits { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
 .trait {
-  background: rgba(0,0,0,0.04); border: 0.5px solid rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.08);
   padding: 5px 12px; border-radius: 9999px; font-size: 11px; color: var(--text-secondary); font-weight: 500;
 }
 .donor-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
-.donor-stat { text-align: center; background: rgba(0,0,0,0.02); border-radius: var(--radius-innermost); padding: 10px 4px; }
+.donor-stat { text-align: center; background: rgba(255,255,255,0.03); border-radius: var(--radius-innermost); padding: 10px 4px; }
 .donor-stat-val { font-size: 15px; font-weight: 700; color: var(--text-primary); }
 .donor-stat-lbl { font-size: 10px; color: var(--text-tertiary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
 .donor-price {
   display: flex; align-items: center; justify-content: space-between;
-  margin-top: 18px; padding-top: 18px; border-top: 0.5px solid rgba(0,0,0,0.06);
+  margin-top: 18px; padding-top: 18px; border-top: 0.5px solid rgba(255,255,255,0.06);
 }
 .price { font-size: 22px; font-weight: 800; color: var(--text-primary); }
 .price span { font-size: 13px; font-weight: 400; color: var(--text-tertiary); }
 .btn-select {
-  background: var(--accent); color: #fff; border: none;
+  background: var(--gradient); color: #fff; border: none;
   padding: 9px 22px; border-radius: 9999px; font-weight: 600; font-size: 13px;
   cursor: pointer; transition: all .2s; font-family: inherit;
 }
-.btn-select:hover { background: var(--accent-hover); transform: scale(1.05); }
+.btn-select:hover { transform: scale(1.05); box-shadow: 0 4px 16px rgba(108,92,231,0.3); }
 
 /* ── FEATURES ── */
 .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
@@ -241,8 +275,13 @@ section { padding: 100px 24px; }
   border-radius: var(--radius-outer); padding: 32px; display: flex; gap: 18px;
   transition: all .3s ease; box-shadow: var(--glass-shadow);
 }
-.feature:hover { transform: translateY(-2px); box-shadow: var(--glass-shadow-lg); }
-.feature-icon { font-size: 28px; flex-shrink: 0; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(0,113,227,0.06); border-radius: 14px; }
+.feature:hover { transform: translateY(-2px); box-shadow: var(--glass-shadow-lg); border-color: var(--glass-border-hover); }
+.feature-icon {
+  flex-shrink: 0; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(108,92,231,0.15), rgba(232,67,147,0.15));
+  border-radius: 14px;
+}
+.feature-icon svg { width: 24px; height: 24px; stroke: var(--accent-soft); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .feature h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text-primary); }
 .feature p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
 
@@ -257,7 +296,12 @@ section { padding: 100px 24px; }
 }
 .legal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
 .legal-item { display: flex; gap: 14px; }
-.legal-icon { font-size: 24px; flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(0,113,227,0.06); border-radius: 12px; }
+.legal-icon {
+  flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(108,92,231,0.15), rgba(232,67,147,0.15));
+  border-radius: 12px;
+}
+.legal-icon svg { width: 22px; height: 22px; stroke: var(--accent-soft); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .legal-item h3 { font-size: 15px; font-weight: 700; margin-bottom: 5px; color: var(--text-primary); }
 .legal-item p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
 
@@ -273,23 +317,26 @@ section { padding: 100px 24px; }
 }
 .pricing-card.featured {
   background: var(--glass-bg-heavy);
-  border: 0.5px solid rgba(0,113,227,0.2);
-  box-shadow: var(--glass-shadow-lg), 0 0 0 1px rgba(0,113,227,0.08);
+  border: 0.5px solid rgba(108,92,231,0.3);
+  box-shadow: var(--glass-shadow-lg), 0 0 0 1px rgba(108,92,231,0.1);
   position: relative;
 }
 .pricing-card.featured::before {
   content: 'Most Popular'; position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
-  background: var(--accent); padding: 5px 18px; border-radius: 9999px;
+  background: var(--gradient); padding: 5px 18px; border-radius: 9999px;
   font-size: 11px; font-weight: 700; color: #fff; letter-spacing: 0.3px;
 }
 .pricing-card:hover { transform: translateY(-3px); box-shadow: var(--glass-shadow-lg); }
-.pricing-tier { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 700; }
+.pricing-tier {
+  font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 .pricing-price { font-size: 44px; font-weight: 800; margin: 14px 0 6px; color: var(--text-primary); letter-spacing: -1px; }
 .pricing-price span { font-size: 15px; color: var(--text-tertiary); font-weight: 400; }
 .pricing-desc { font-size: 14px; color: var(--text-secondary); margin-bottom: 24px; }
 .pricing-features { list-style: none; text-align: left; margin-bottom: 28px; }
-.pricing-features li { padding: 9px 0; border-bottom: 0.5px solid rgba(0,0,0,0.05); font-size: 14px; color: var(--text-secondary); }
-.pricing-features li::before { content: '✓ '; color: #30D158; font-weight: 700; }
+.pricing-features li { padding: 9px 0; border-bottom: 0.5px solid rgba(255,255,255,0.04); font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
+.pricing-features li svg { width: 16px; height: 16px; stroke: #30D158; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 
 /* ── TESTIMONIALS ── */
 .testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -301,29 +348,28 @@ section { padding: 100px 24px; }
   border-radius: var(--radius-outer); padding: 28px;
   box-shadow: var(--glass-shadow);
 }
-.testimonial-stars { color: #FF9F0A; font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+.testimonial-stars { color: #FF9F0A; font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; display: flex; gap: 2px; }
+.testimonial-stars svg { width: 16px; height: 16px; fill: #FF9F0A; }
 .testimonial p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; font-style: italic; margin-bottom: 18px; }
 .testimonial-author { font-size: 14px; font-weight: 700; color: var(--text-primary); }
 .testimonial-loc { font-size: 12px; color: var(--text-tertiary); }
 
 /* ── FAQ ── */
 .faq-list { max-width: 680px; }
-.faq-item { border-bottom: 0.5px solid rgba(0,0,0,0.06); }
+.faq-item { border-bottom: 0.5px solid rgba(255,255,255,0.06); }
 .faq-q {
   padding: 20px 0; font-size: 16px; font-weight: 600; cursor: pointer;
   display: flex; justify-content: space-between; align-items: center;
   color: var(--text-primary);
 }
-.faq-q::after { content: '+'; font-size: 22px; color: var(--accent); transition: transform .3s; font-weight: 300; }
+.faq-q::after { content: '+'; font-size: 22px; color: var(--accent-soft); transition: transform .3s; font-weight: 300; }
 .faq-item.open .faq-q::after { transform: rotate(45deg); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s; }
 .faq-a-inner { padding: 0 0 20px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
 .faq-item.open .faq-a { max-height: 300px; }
 
 /* ── CTA ── */
-.cta-section {
-  text-align: center; position: relative;
-}
+.cta-section { text-align: center; position: relative; }
 .cta-glass {
   background: var(--glass-bg-heavy);
   backdrop-filter: blur(60px) saturate(2);
@@ -333,13 +379,13 @@ section { padding: 100px 24px; }
   box-shadow: var(--glass-shadow-lg); max-width: 800px; margin: 0 auto;
 }
 .cta-section h2 { font-size: 42px; font-weight: 800; margin-bottom: 16px; letter-spacing: -1px; color: var(--text-primary); }
-.cta-section h2 span { color: var(--accent); }
+.cta-section h2 span {
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 .cta-section p { font-size: 17px; color: var(--text-secondary); max-width: 440px; margin: 0 auto 32px; }
 
 /* ── FOOTER ── */
-footer {
-  padding: 48px 24px 36px; text-align: center;
-}
+footer { padding: 48px 24px 36px; text-align: center; }
 .footer-inner { max-width: 1100px; margin: 0 auto; }
 .footer-logo { font-size: 22px; font-weight: 800; color: var(--text-primary); margin-bottom: 6px; }
 .footer-links { display: flex; gap: 28px; justify-content: center; margin: 20px 0; }
@@ -362,6 +408,25 @@ footer {
 </style>
 </head>
 <body>
+
+<!-- SVG icon definitions -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+  <symbol id="icon-clipboard" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></symbol>
+  <symbol id="icon-check-circle" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></symbol>
+  <symbol id="icon-dna" viewBox="0 0 24 24"><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/><path d="M2 9c6.667 6 13.333 0 20 6"/></symbol>
+  <symbol id="icon-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></symbol>
+  <symbol id="icon-scale" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><polyline points="8 7 12 3 16 7"/><path d="M4 14l4-4 4 4"/><path d="M12 14l4-4 4 4"/><line x1="4" y1="14" x2="4" y2="17"/><line x1="20" y1="14" x2="20" y2="17"/></symbol>
+  <symbol id="icon-hospital" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="12" y1="5" x2="12" y2="11"/><line x1="9" y1="14" x2="9" y2="21"/><line x1="15" y1="14" x2="15" y2="21"/></symbol>
+  <symbol id="icon-truck" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></symbol>
+  <symbol id="icon-scroll" viewBox="0 0 24 24"><path d="M8 21h12a2 2 0 002-2v-2H10v2a2 2 0 01-2 2z"/><path d="M6 3h12a2 2 0 012 2v12H8V5a2 2 0 00-2-2z"/><path d="M4 5a2 2 0 012-2"/><path d="M4 5v14a2 2 0 002 2"/></symbol>
+  <symbol id="icon-building" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/><path d="M9 18h6v4H9z"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="icon-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="icon-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+</svg>
 
 <!-- NAV -->
 <nav>
@@ -408,19 +473,19 @@ footer {
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <div class="step-icon">🔍</div>
+        <div class="step-icon"><svg><use href="#icon-search"/></svg></div>
         <h3>Browse & Filter</h3>
         <p>Search through thousands of verified donor profiles. Filter by education, ethnicity, height, health history, interests, and more. Every profile includes comprehensive genetic screening results.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <div class="step-icon">📋</div>
+        <div class="step-icon"><svg><use href="#icon-clipboard"/></svg></div>
         <h3>Review & Select</h3>
         <p>View detailed profiles including childhood photos, voice recordings, personality assessments, and family medical history. Compare donors side-by-side to find your perfect match.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <div class="step-icon">✅</div>
+        <div class="step-icon"><svg><use href="#icon-check-circle"/></svg></div>
         <h3>Legal Purchase</h3>
         <p>Complete the transaction through our secure legal framework. All contracts are reviewed by reproductive law attorneys. Samples are shipped from FDA-registered facilities.</p>
       </div>
@@ -437,9 +502,9 @@ footer {
     <div class="donors-grid">
 
       <div class="donor-card">
-        <div class="donor-photo" style="background: linear-gradient(135deg, #667eea, #764ba2);">
-          👨‍⚕️
-          <div class="donor-verified">✓ Verified</div>
+        <div class="donor-photo" style="background: linear-gradient(135deg, #6C5CE7, #A29BFE);">
+          <div class="donor-silhouette"><svg><use href="#icon-user"/></svg></div>
+          <div class="donor-verified"><svg><use href="#icon-check"/></svg> Verified</div>
         </div>
         <div class="donor-info">
           <div class="donor-id">Donor #4827</div>
@@ -462,9 +527,9 @@ footer {
       </div>
 
       <div class="donor-card">
-        <div class="donor-photo" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
-          👨‍💻
-          <div class="donor-verified">✓ Verified</div>
+        <div class="donor-photo" style="background: linear-gradient(135deg, #E84393, #FD79A8);">
+          <div class="donor-silhouette"><svg><use href="#icon-user"/></svg></div>
+          <div class="donor-verified"><svg><use href="#icon-check"/></svg> Verified</div>
         </div>
         <div class="donor-info">
           <div class="donor-id">Donor #3156</div>
@@ -488,8 +553,8 @@ footer {
 
       <div class="donor-card">
         <div class="donor-photo" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
-          👨‍🎓
-          <div class="donor-verified">✓ Verified</div>
+          <div class="donor-silhouette"><svg><use href="#icon-user"/></svg></div>
+          <div class="donor-verified"><svg><use href="#icon-check"/></svg> Verified</div>
         </div>
         <div class="donor-info">
           <div class="donor-id">Donor #7293</div>
@@ -523,27 +588,27 @@ footer {
     <div class="section-subtitle">Built from the ground up for transparency, safety, and empowerment.</div>
     <div class="features-grid">
       <div class="feature">
-        <div class="feature-icon">🧬</div>
+        <div class="feature-icon"><svg><use href="#icon-dna"/></svg></div>
         <div><h3>Genetic Screening</h3><p>Every donor undergoes 300+ genetic marker analysis, carrier screening, and chromosomal testing by CLIA-certified labs.</p></div>
       </div>
       <div class="feature">
-        <div class="feature-icon">🔒</div>
+        <div class="feature-icon"><svg><use href="#icon-lock"/></svg></div>
         <div><h3>Privacy Protected</h3><p>Choose anonymous or open-ID donors. All personal data is encrypted end-to-end. HIPAA compliant infrastructure.</p></div>
       </div>
       <div class="feature">
-        <div class="feature-icon">⚖️</div>
+        <div class="feature-icon"><svg><use href="#icon-scale"/></svg></div>
         <div><h3>Legal Framework</h3><p>Every transaction includes attorney-reviewed contracts that protect both buyer and donor. Compliant with all 50 state laws.</p></div>
       </div>
       <div class="feature">
-        <div class="feature-icon">🏥</div>
+        <div class="feature-icon"><svg><use href="#icon-hospital"/></svg></div>
         <div><h3>FDA-Registered Facilities</h3><p>All samples processed and stored at FDA-registered tissue banks with proper quarantine protocols.</p></div>
       </div>
       <div class="feature">
-        <div class="feature-icon">🚚</div>
+        <div class="feature-icon"><svg><use href="#icon-truck"/></svg></div>
         <div><h3>Secure Shipping</h3><p>Cryogenic shipping nationwide in specialized nitrogen vapor tanks. Track your shipment in real-time.</p></div>
       </div>
       <div class="feature">
-        <div class="feature-icon">💬</div>
+        <div class="feature-icon"><svg><use href="#icon-chat"/></svg></div>
         <div><h3>Concierge Support</h3><p>Dedicated fertility coordinators guide you through every step. Chat, call, or video consult anytime.</p></div>
       </div>
     </div>
@@ -560,19 +625,19 @@ footer {
     <div class="legal-section">
       <div class="legal-grid">
         <div class="legal-item">
-          <div class="legal-icon">📜</div>
+          <div class="legal-icon"><svg><use href="#icon-scroll"/></svg></div>
           <div><h3>Binding Contracts</h3><p>All transactions protected by legally binding agreements reviewed by specialized reproductive law attorneys in your state.</p></div>
         </div>
         <div class="legal-item">
-          <div class="legal-icon">🏛️</div>
+          <div class="legal-icon"><svg><use href="#icon-building"/></svg></div>
           <div><h3>State Compliance</h3><p>We maintain compliance with reproductive tissue laws across all 50 states, including UPA 2017 donor protections.</p></div>
         </div>
         <div class="legal-item">
-          <div class="legal-icon">🛡️</div>
+          <div class="legal-icon"><svg><use href="#icon-shield"/></svg></div>
           <div><h3>Donor Rights</h3><p>Clear contractual termination of parental rights for donors. Full legal separation between donor and recipient families.</p></div>
         </div>
         <div class="legal-item">
-          <div class="legal-icon">✅</div>
+          <div class="legal-icon"><svg><use href="#icon-check-circle"/></svg></div>
           <div><h3>FDA Regulated</h3><p>Compliant with 21 CFR Part 1271 for human cells, tissues, and cellular/tissue-based products (HCT/Ps).</p></div>
         </div>
       </div>
@@ -594,11 +659,11 @@ footer {
         <div class="pricing-price">$800 <span>/ vial</span></div>
         <div class="pricing-desc">Anonymous donor selection</div>
         <ul class="pricing-features">
-          <li>Basic donor profile</li>
-          <li>Genetic screening report</li>
-          <li>Medical history</li>
-          <li>Standard shipping</li>
-          <li>Legal contract included</li>
+          <li><svg><use href="#icon-check"/></svg> Basic donor profile</li>
+          <li><svg><use href="#icon-check"/></svg> Genetic screening report</li>
+          <li><svg><use href="#icon-check"/></svg> Medical history</li>
+          <li><svg><use href="#icon-check"/></svg> Standard shipping</li>
+          <li><svg><use href="#icon-check"/></svg> Legal contract included</li>
         </ul>
         <button class="btn-primary" style="width:100%">Choose Plan</button>
       </div>
@@ -607,12 +672,12 @@ footer {
         <div class="pricing-price">$1,200 <span>/ vial</span></div>
         <div class="pricing-desc">Extended profiles & open-ID option</div>
         <ul class="pricing-features">
-          <li>Full donor profile + photos</li>
-          <li>Extended genetic panel (300+)</li>
-          <li>Personality assessment</li>
-          <li>Audio interview included</li>
-          <li>Priority shipping</li>
-          <li>Dedicated coordinator</li>
+          <li><svg><use href="#icon-check"/></svg> Full donor profile + photos</li>
+          <li><svg><use href="#icon-check"/></svg> Extended genetic panel (300+)</li>
+          <li><svg><use href="#icon-check"/></svg> Personality assessment</li>
+          <li><svg><use href="#icon-check"/></svg> Audio interview included</li>
+          <li><svg><use href="#icon-check"/></svg> Priority shipping</li>
+          <li><svg><use href="#icon-check"/></svg> Dedicated coordinator</li>
         </ul>
         <button class="btn-primary" style="width:100%">Choose Plan</button>
       </div>
@@ -621,13 +686,13 @@ footer {
         <div class="pricing-price">$2,500 <span>/ vial</span></div>
         <div class="pricing-desc">Exclusive donors, full concierge</div>
         <ul class="pricing-features">
-          <li>Top-tier exclusive donors</li>
-          <li>Full genome sequencing</li>
-          <li>Video interview access</li>
-          <li>1-on-1 genetic counseling</li>
-          <li>Express cryogenic shipping</li>
-          <li>Lifetime storage option</li>
-          <li>VIP concierge service</li>
+          <li><svg><use href="#icon-check"/></svg> Top-tier exclusive donors</li>
+          <li><svg><use href="#icon-check"/></svg> Full genome sequencing</li>
+          <li><svg><use href="#icon-check"/></svg> Video interview access</li>
+          <li><svg><use href="#icon-check"/></svg> 1-on-1 genetic counseling</li>
+          <li><svg><use href="#icon-check"/></svg> Express cryogenic shipping</li>
+          <li><svg><use href="#icon-check"/></svg> Lifetime storage option</li>
+          <li><svg><use href="#icon-check"/></svg> VIP concierge service</li>
         </ul>
         <button class="btn-primary" style="width:100%">Choose Plan</button>
       </div>
@@ -644,19 +709,19 @@ footer {
     </div>
     <div class="testimonials">
       <div class="testimonial">
-        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-stars"><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg></div>
         <p>"SpermBuy made the entire process feel empowering rather than clinical. I found my perfect donor in a week, and the legal process was completely seamless."</p>
         <div class="testimonial-author">Sarah M.</div>
         <div class="testimonial-loc">Los Angeles, CA</div>
       </div>
       <div class="testimonial">
-        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-stars"><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg></div>
         <p>"As a same-sex couple, we needed a platform that understood us. The profiles are incredibly detailed, and our coordinator was amazing throughout."</p>
         <div class="testimonial-author">Jessica & Emma T.</div>
         <div class="testimonial-loc">Austin, TX</div>
       </div>
       <div class="testimonial">
-        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-stars"><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg><svg><use href="#icon-star"/></svg></div>
         <p>"The genetic screening alone is worth it. Knowing my donor was fully tested for 300+ conditions gave me peace of mind I couldn't find anywhere else."</p>
         <div class="testimonial-author">Rachel K.</div>
         <div class="testimonial-loc">New York, NY</div>
