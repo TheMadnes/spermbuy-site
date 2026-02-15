@@ -409,6 +409,29 @@ footer { padding: 48px 24px 36px; text-align: center; }
 </head>
 <body>
 
+<!-- UNDER CONSTRUCTION BANNER -->
+<div id="construction-banner" style="
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  background: linear-gradient(135deg, #6C5CE7, #E84393);
+  padding: 12px 24px;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+  color: #fff; letter-spacing: 0.3px;
+  box-shadow: 0 4px 20px rgba(108,92,231,0.4);
+">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/>
+  </svg>
+  This project is currently under development. Stay tuned!
+  <button onclick="document.getElementById('construction-banner').style.display='none'; document.body.style.paddingTop='0';" style="
+    background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);
+    color: #fff; border-radius: 9999px; padding: 4px 12px; font-size: 12px;
+    cursor: pointer; font-family: inherit; font-weight: 500; margin-left: 8px;
+    backdrop-filter: blur(10px);
+  ">Dismiss</button>
+</div>
+<style>#construction-banner ~ nav { top: 44px; } body { padding-top: 44px; }</style>
+
 <!-- SVG icon definitions -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
   <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
